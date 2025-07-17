@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="http://anketa.novolazer.ru/favicon.ico" type="image/x-icon">
+    <title>NovoLASER - Анкета</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat Alternates', Arial, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #A37BBD;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-container {
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .logo {
+            height: auto;
+            max-width: 40%;
+            transition: all 0.3s ease;
+        }
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        p {
+            color: #000000;
+            font-size: clamp(16px, 4vw, 24px);
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-weight: 700;
+            margin: 25px 0 15px;
+            font-size: clamp(16px, 4vw, 18px);
+        }
+        .form-field {
+            margin-bottom: 15px;
+        }
+        .form-field label {
+            display: block;
+            font-weight: 400;
+            margin-bottom: 5px;
+            font-size: clamp(14px, 3vw, 16px);
+        }
+        .form-field input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: clamp(14px, 3vw, 16px);
+        }
+        .knopka2 {
+            background-color: #A37BBD;
+            border-radius: 255px;
+            height: 50px;
+            width: 100%;
+            max-width: 230px;
+            margin: 15px 0;
+            border: none;
+            color: #fff;
+            font-weight: 500;
+            font-size: clamp(14px, 3vw, 16px);
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+        .submit-container {
+            padding: 0 20px 20px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            min-height: 70px;
+        }
+        .knopka {
+            background-color: #A37BBD;
+            border-radius: 255px;
+            height: 50px;
+            width: 100%;
+            max-width: 300px;
+            border: none;
+            color: #fff;
+            font-weight: 500;
+            font-size: clamp(14px, 3vw, 16px);
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .knopka:hover {
+            background-color: #8e69a8;
+        }
+        .consent-checkbox {
+            display: flex;
+            align-items: flex-start;
+            margin: 25px 0 15px;
+            font-size: clamp(12px, 3vw, 14px);
+            line-height: 1.4;
+        }
+        .consent-checkbox input {
+            margin-right: 10px;
+            margin-top: 3px;
+            min-width: 18px;
+        }
+        .consent-text {
+            flex: 1;
+        }
+        .consent-link {
+            font-weight: 700;
+            color: #A37BBD;
+            text-decoration: none;
+        }
+        
+        /* Стили для сообщений */
+        .alert {
+            position: absolute;
+            width: 100%;
+            max-width: 760px;
+            padding: 15px 20px;
+            border-radius: 255px;
+            font-size: clamp(14px, 3vw, 16px);
+            text-align: center;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .alert.show {
+            display: block;
+            opacity: 1;
+        }
+        
+        .alert-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .alert-error {
+            background-color: #F44336;
+            color: white;
+        }
+        
+        @media (max-width: 600px) {
+            header {
+                padding: 10px 15px;
+            }
+            
+            .form-container {
+                padding: 20px 15px;
+            }
+            
+            .form-field input {
+                padding: 10px 12px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .knopka {
+                height: 50px;
+                font-size: 16px;
+            }
+            
+            .knopka2 {
+                height: 45px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="http://anketa.novolazer.ru/logo.svg" alt="NovoLASER Logo" class="logo">
+    </header>
+    
+    <div class="main-container">
+        <div class="form-container">
+            <p>Специалист по лазерной эпиляции Москва (м. Планерная, м. Ботанический Сад, м. Останкино, Химки)</p>
+            <button class="knopka2">от 85 000 до 100 000 ₽</button> 
+
+            <div class="section" id="applicationForm">
+                <div class="section-title">Анкета кандидата</div>
+                
+                <div class="form-field">
+                    <label for="fullname">ФИО</label>
+                    <input type="text" id="fullname" placeholder="ФИО">
+                </div>
+                
+                <div class="form-field">
+                    <label for="age">Возраст</label>
+                    <input type="number" id="age" placeholder="Возраст">
+                </div>
+                
+                <div class="form-field">
+                    <label for="city">Город</label>
+                    <input type="text" id="city" placeholder="Город">
+                </div>
+                
+                <div class="form-field">
+                    <label for="vacancy">Вакансия</label>
+                    <input type="text" id="vacancy" placeholder="Начинающий косметолог">
+                </div>
+                
+                <div class="form-field">
+                    <label for="education">Образование</label>
+                    <input type="text" id="education" placeholder="Образование">
+                </div>
+                
+                <div class="form-field">
+                    <label for="phone">Номер телефона</label>
+                    <input type="tel" class="mask-tel" id="phone" placeholder="+7 (___) ___ __ __">
+                </div>
+            </div>
+
+            <div class="consent-checkbox">
+                <input type="checkbox" id="consent" checked>
+                <label for="consent" class="consent-text">
+                    Нажимая кнопку «Отправить анкету», я даю свое согласие на обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и для целей, определенных в <a href="#" class="consent-link">Согласии на обработку персональных данных</a>
+                </label>
+            </div>
+        </div>
+        
+        <div class="submit-container">
+            <button class="knopka" id="submitBtn">Отправить анкету</button>
+            <div id="successAlert" class="alert alert-success">
+                Анкета успешно отправлена!
+            </div>
+            <div id="errorAlert" class="alert alert-error">
+                Произошла ошибка при отправке анкеты. Пожалуйста, попробуйте ещё раз или свяжитесь с нами по телефону.
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const submitBtn = this;
+            const successAlert = document.getElementById('successAlert');
+            const errorAlert = document.getElementById('errorAlert');
+            
+            // Скрываем все сообщения перед отправкой
+            successAlert.classList.remove('show');
+            errorAlert.classList.remove('show');
+            
+            // Здесь должна быть реальная логика отправки формы
+            // Для демонстрации используем случайный выбор успеха/ошибки
+            const isSuccess = Math.random() > 0.5;
+            
+            // Скрываем кнопку
+            submitBtn.style.display = 'none';
+            
+            if(isSuccess) {
+                // Показываем сообщение об успехе
+                successAlert.classList.add('show');
+                
+                // Очищаем форму
+                document.getElementById('applicationForm').reset();
+            } else {
+                // Показываем сообщение об ошибке
+                errorAlert.classList.add('show');
+            }
+            
+            // Возвращаем кнопку через 5 секунд
+            setTimeout(() => {
+                successAlert.classList.remove('show');
+                errorAlert.classList.remove('show');
+                submitBtn.style.display = 'block';
+            }, 5000);
+        });
+    </script>
+    <script src="tel-mask.js"></script>
+</body>
+</html>
